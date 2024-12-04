@@ -9,12 +9,13 @@ const poppins = Poppins({
   display: "swap",
 });
 
+export const viewport =
+  "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no";
+
 export const metadata = {
   title: "InSite Metrics",
   description:
     "Empower your website with real-time metrics from InsightTrack. Capture clicks, page views, and user journeys to fuel smarter decisions.",
-  viewport:
-    "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
 };
 
 export default function RootLayout({ children }) {

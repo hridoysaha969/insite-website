@@ -28,7 +28,7 @@ const Header = () => {
       <nav className="w-[98%] md:w-[700px] xl:w-[1024px] mx-auto py-4 px-2 md:px-4 flex justify-between items-center">
         <Link
           href="/"
-          className="text-2xl text-gray-900 font-semibold select-none"
+          className="md:text-2xl text-xl text-gray-900 font-semibold select-none"
         >
           InSite{" "}
           <span className="bg-gradient-to-r from-violet-600 to-fuchsia-500 bg-clip-text text-transparent">
@@ -36,7 +36,7 @@ const Header = () => {
           </span>
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="items-center gap-4 hidden sm:flex">
           <Link href="/docs" className="text-gray-900 font-normal">
             Docs
           </Link>
