@@ -78,9 +78,9 @@ const Header = () => {
           <Button asChild className="rounded-md capitalize">
             <Link href={user ? "/dashboard" : "/auth"}>Get started</Link>
           </Button>
-          <Button asChild variant="secondary" className="rounded-md capitalize">
+          {/* <Button asChild variant="secondary" className="rounded-md capitalize">
             <Link href="/docs">Docs</Link>
-          </Button>
+          </Button> */}
         </div>
       </section>
     </header>

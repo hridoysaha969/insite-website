@@ -13,7 +13,7 @@ export async function OPTIONS(request) {
 
 export async function POST(req) {
   const payload = await req.json();
-  const { domain, url, event } = payload;
+  const { domain, url, event, source } = payload;
 
   if (!url.includes(domain)) {
     return NextResponse.json(
@@ -28,7 +28,7 @@ export async function POST(req) {
   if (event == "session_start") {
     await supabase
       .from("visits")
-      .insert([{ website_id: domain }])
+      .insert([{ website_id: domain, source: source ?? "Direct" }])
       .select();
   }
   if (event == "pageview") {

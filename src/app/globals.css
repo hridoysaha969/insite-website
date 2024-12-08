@@ -87,12 +87,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: theme("colors.blue.500"); /* Color of the scrollbar thumb */
-  border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+  background-color: theme("colors.gray.500"); /* Color of the scrollbar thumb */
+  border-radius: 3px; /* Rounded corners for the scrollbar thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: theme(
-    "colors.blue.700"
+    "colors.gray.700"
   ); /* Color when hovering over the scrollbar thumb */
 }
