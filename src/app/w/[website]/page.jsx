@@ -15,7 +15,13 @@ const Page = () => {
 
   const [pageViews, setPageViews] = useState([]);
   const [totalVisits, setTotalVisits] = useState([]);
+  const [customEvents, setCustomEvents] = useState([]);
   const [groupedPageViews, setGroupedPageViews] = useState([]);
+
+  const [groupedPageSources, setGroupedPageSources] = useState([]);
+  const [groupedCustomEvents, setGroupedCustomEvents] = useState([]);
+  const [activeCustomEventTab, setActiveCustomEventTab] = useState("");
+  const [filterValue, setFilterValue] = useState(0);
 
   useEffect(() => {
     if (!currentUser) return;
@@ -41,17 +47,28 @@ const Page = () => {
     setLoading(true);
 
     try {
-      const [viewsResponse, visitsResponse] = await Promise.all([
-        supabase.from("page_views").select().eq("domain", website),
-        supabase.from("visits").select().eq("website_id", website),
-      ]);
+      const [viewsResponse, visitsResponse, customEventsResponse] =
+        await Promise.all([
+          supabase.from("page_views").select().eq("domain", website),
+          supabase.from("visits").select().eq("website_id", website),
+          supabase.from("events").select().eq("website_id", website),
+        ]);
 
       const views = viewsResponse.data;
       const visits = visitsResponse.data;
+      const customEventsData = customEventsResponse.data;
 
       setPageViews(views);
       setGroupedPageViews(groupPageViews(views));
       setTotalVisits(visits);
+      setCustomEvents(customEventsData);
+      // grouping the customEvent by name
+      setGroupedCustomEvents(
+        customEventsData.reduce((acc, event) => {
+          acc[event.event_name] = (acc[event.event_name] || 0) + 1;
+          return acc;
+        }, {})
+      );
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -165,22 +182,22 @@ const Page = () => {
                       add ?utm={"{source}"} to track
                     </p>
                   </h1>
-                  {/* {groupedPageSources.map((pageSource) => (
-                      <div
-                        key={pageSource}
-                        className="text-white w-full items-center justify-between 
+                  {groupedPageSources.map((pageSource) => (
+                    <div
+                      key={pageSource}
+                      className="text-white w-full items-center justify-between 
                   px-6 py-4 border-b border-white/5 flex"
-                      >
-                        <p className="text-white/70 font-light">
-                          /{pageSource.source}
+                    >
+                      <p className="text-white/70 font-light">
+                        /{pageSource.source}
+                      </p>
+                      <p className="text-white/70 font-light">
+                        <p className="">
+                          {abbreviateNumber(pageSource.visits)}
                         </p>
-                        <p className="text-white/70 font-light">
-                          <p className="">
-                            {abbreviateNumber(pageSource.visits)}
-                          </p>
-                        </p>
-                      </div>
-                    ))} */}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </TabsContent>
