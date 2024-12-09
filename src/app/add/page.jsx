@@ -113,7 +113,7 @@ const Add = () => {
                 disabled
                 className="outline-none w-full rounded-md bg-transparent p-4 text-gray-500 border border-gray-600"
                 value={`<script defer data-domain="${website}"
-                src="http://localhost:3000/tracking-script.js"></script>`}
+                src="https://insite-metrics.vercel.app/tracking-script.js"></script>`}
               />
               <p className="text-sm text-gray-500 pt-2 font-light">
                 Add the script in your {"<head>"} tag of your website.

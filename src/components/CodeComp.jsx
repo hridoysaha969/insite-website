@@ -3,7 +3,7 @@ import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const CodeComp = () => {
   const codeString = `
- const url = "http://localhost:3000/api/events";
+ const url = "https://insite-metrics.vercel.app/api/events";
   const headers = {
     "Content-Type": "application/json",
     Authorization: "Bearer {{apiKey}}",
