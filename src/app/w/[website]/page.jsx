@@ -103,6 +103,14 @@ const Page = () => {
     }));
   };
 
+  const formatTimeStampz = (date) => {
+    const timestamp = new Date(date);
+
+    // Step 2: Format the Date object into a human-readable format
+    const formattedTimestamp = timestamp.toLocaleString();
+    return formattedTimestamp;
+  };
+
   if (loading) {
     return (
       <div className="text-gray-600 min-h-screen w-full items-start flex flex-col">
@@ -201,8 +209,49 @@ const Page = () => {
                 </div>
               </div>
             </TabsContent>
-            <TabsContent value="custom_event">
-              Change your password here.
+            <TabsContent value="custom_event" className="w-full">
+              {groupedCustomEvents && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {Object.entries(groupedCustomEvents).map(
+                    ([eventName, count]) => (
+                      <div key={`${eventName}-${count}`} className="basis-1/2">
+                        <div
+                          className={`bg-black smooth group hover:border-white/10
+                             text-white text-center border`}
+                        >
+                          <p
+                            className={`text-white/70 font-medium py-8 w-full
+                                 group-hover:border-white/10
+                                smooth text-center border-b`}
+                          >
+                            {eventName}
+                          </p>
+                          <p className="py-12 text-3xl lg:text-4xl font-bold bg-[#050505]">
+                            {count}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+              )}
+
+              <div className="items-center justify-center mt-12 w-full relative">
+                {customEvents.map((event, ind) => (
+                  <div
+                    className="w-full items-start justify-start px-6 py-12 flex flex-col relative"
+                    key={ind}
+                  >
+                    <p className="text-gray-500 font-light pb-3">
+                      {event.event_name}
+                    </p>
+                    <p>{event.message}</p>
+                    <p className="italic absolute right-2 bottom-2 text-xs text-gray-500">
+                      {formatTimeStampz(event.timestamp)}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </TabsContent>
           </Tabs>
         </div>
