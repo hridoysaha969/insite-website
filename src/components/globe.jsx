@@ -49,6 +49,7 @@ const Earth = ({
       globe.destroy();
     };
   }, []);
+
   return (
     <div
       className={cn(
