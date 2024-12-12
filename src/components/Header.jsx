@@ -56,7 +56,7 @@ const Header = () => {
                   </Link>
                 </Button>
               ) : (
-                <Button asChild className="rounded-full">
+                <Button asChild className="rounded-full gradient-btn">
                   <Link
                     href="/auth"
                     className="text-gray-900 font-normal capitalize"

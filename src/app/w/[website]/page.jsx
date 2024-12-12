@@ -7,6 +7,7 @@ import useUser from "@/hooks/useUser";
 import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { LoaderPinwheel, RotateCw } from "lucide-react";
 
 const Page = () => {
   const { currentUser } = useUser();
@@ -121,16 +122,22 @@ const Page = () => {
   }
 
   return (
-    <div className="text-gray-600 min-h-screen w-full items-start flex flex-col">
+    <div className="text-gray-300 bg-gray-950 min-h-screen w-full items-start flex flex-col">
       <Navbar />
 
       {pageViews?.length == 0 && !loading ? (
         <div className="w-full items-center justify-center flex flex-col space-y-6 z-40 relative min-h-screen px-4">
-          <div className="z-40 w-full lg:w-2/3 border-gray-400 py-12 px-8 items-center justify-center flex flex-col text-gray-500 space-y-4 relative">
-            <p className="bg-green-600 rounded-full p-4 animate-pulse" />
-            <p className="animate-pulse">Waiting for the first page view</p>
-
-            <Button onClick={() => window.location.reload()}>Refresh</Button>
+          <div className="bg-gray-700 shadow-md px-6 py-8 rounded-lg flex flex-col items-center">
+            <div className="mb-4 flex flex-col items-center gap-3">
+              <LoaderPinwheel className="w-6 h-6 animate-pulse text-blue-500" />
+              <p>No one has visited yet. Wait for the first visit.</p>
+            </div>
+            <Button
+              onClick={() => window.location.reload()}
+              className="flex items-center gap-2 rounded-sm px-6"
+            >
+              <RotateCw className="w-4 h-4" /> Reload
+            </Button>
           </div>
         </div>
       ) : (

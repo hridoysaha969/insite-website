@@ -40,7 +40,7 @@ const Dashboard = () => {
           {/* HEADER */}
           <DashboardNav />
 
-          <div className="w-full items-start justify-start flex flex-col min-h-screen">
+          <div className="w-full bg-gray-950 items-start justify-start flex flex-col min-h-screen">
             <div className="w-full items-center justify-end flex p-6 border-b border-slate-600 z-40">
               <Button asChild className="capitalize">
                 <Link href="/add" prefetch>
