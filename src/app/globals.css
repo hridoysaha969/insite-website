@@ -77,6 +77,35 @@
   }
 }
 
+@layer utilities {
+  .bg-dotted {
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.2) 1px,
+      transparent 1px
+    );
+    background-size: 20px 20px; /* Adjust the spacing of the dots */
+    background-color: #000; /* Set the background color */
+  }
+  .gradient-btn {
+    @apply bg-gradient-to-r from-blue-600 to-blue-300 py-2 px-6;
+    background-size: 200% 200%; /* Make the gradient larger for animation */
+    animation: gradient 3s ease infinite; /* Add animation */
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* Custom scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px; /* Width of the scrollbar */
