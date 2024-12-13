@@ -7,7 +7,8 @@ import useUser from "@/hooks/useUser";
 import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LoaderPinwheel, RotateCw } from "lucide-react";
+import { ArrowLeft, LoaderPinwheel, RotateCw } from "lucide-react";
+import Link from "next/link";
 
 const Page = () => {
   const { currentUser } = useUser();
@@ -127,8 +128,11 @@ const Page = () => {
 
       {pageViews?.length == 0 && !loading ? (
         <div className="w-full items-center justify-center flex flex-col space-y-6 z-40 relative min-h-screen px-4">
-          <div className="bg-gray-700 shadow-md px-6 py-8 rounded-lg flex flex-col items-center">
+          <div className="bg-gray-700 relative shadow-md px-6 py-8 rounded-lg flex flex-col items-center">
             <div className="mb-4 flex flex-col items-center gap-3">
+              <Link href="/dashboard" className="absolute top-2 left-2">
+                <ArrowLeft className="text-gray-300 w-5 h-5" />
+              </Link>
               <LoaderPinwheel className="w-6 h-6 animate-pulse text-blue-500" />
               <p>No one has visited yet. Wait for the first visit.</p>
             </div>

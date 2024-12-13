@@ -1,8 +1,10 @@
 "use client";
 import DashboardNav from "@/components/DashboardNav";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/config/Supabase_Client";
 import useUser from "@/hooks/useUser";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -33,31 +35,50 @@ const Dashboard = () => {
     fetchWebsite();
   }, [currentUser, supabase]);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString("en-US", {
+      year: "numeric",
+      month: "short", // "December"
+      day: "numeric", // "6"
+    });
+  };
+
   return (
     <>
       {currentUser ? (
-        <div className="min-h-screen h-full w-full relative items-center justify-center flex flex-col">
+        <div className="min-h-screen bg-gray-950 h-full w-full relative">
           {/* HEADER */}
           <DashboardNav />
 
-          <div className="w-full bg-gray-950 items-start justify-start flex flex-col min-h-screen">
-            <div className="w-full items-center justify-end flex p-6 border-b border-slate-600 z-40">
-              <Button asChild className="capitalize">
-                <Link href="/add" prefetch>
-                  + add website
-                </Link>
-              </Button>
+          <MaxWidthWrapper>
+            <div className="w-full ">
+              <div className="w-full items-center justify-end flex p-6 border-b border-slate-600 z-40">
+                <Button asChild className="capitalize bg-gray-700 rounded-md">
+                  <Link href="/add" prefetch>
+                    + add website
+                  </Link>
+                </Button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-6 p-6 z-40">
+                {website.map((item, ind) => (
+                  <Link href={`/w/${item.website_name}`} key={ind}>
+                    <div className="bg-gray-800 rounded-md py-2 px-2 text-gray-300 hover:shadow-md">
+                      <div className="flex mb-6 justify-between items-center">
+                        <span className=" text-xs font-medium me-2 px-2.5 py-0.5 rounded-full bg-blue-900 text-blue-300">
+                          {formatDate(item.created_at)}
+                        </span>
+                        <p className="hover:underline flex items-center text-[12px] gap-1">
+                          View full report <ArrowRight className="w-4 h-4" />
+                        </p>
+                      </div>
+                      <h2 className="p-1 text-sm pb-2">{item.website_name}</h2>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-6 p-6 z-40">
-              {website.map((item, ind) => (
-                <Link href={`/w/${item.website_name}`} key={ind}>
-                  <div className="border border-white rounded-md py-12 px-6 text-gray-600 hover:shadow-md">
-                    <h2>{item.website_name}</h2>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+          </MaxWidthWrapper>
         </div>
       ) : null}
     </>
