@@ -17,7 +17,7 @@ const Add = () => {
   const router = useRouter();
 
   const scriptText = `<script defer data-domain="${website}"
-                src="https://insite-metrics.vercel.app/tracking-script.js"></script>`;
+                src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>`;
 
   const addWebsite = async () => {
     if (website.trim() == "" || loading) return;
