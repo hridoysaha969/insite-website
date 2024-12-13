@@ -131,12 +131,13 @@ const Add = () => {
                 </p>
 
                 <div className="mt-4">
-                  <div className="bg-gray-600 cursor-pointer py-1 flex justify-end items-center rounded-t-md px-2">
+                  <div className="bg-gray-600 cursor-pointer -mb-1 py-1 flex justify-end items-center rounded-t-md px-2">
                     <p onClick={copyCode} className="flex items-center gap-1">
                       <ClipboardList className="w-4 h-4 text-gray-200" />
                       <span className="text-xs text-gray-200">Copy</span>
                     </p>
                   </div>
+
                   <div className="rounded-md pb-4">
                     <SyntaxHighlighter
                       language="javascript"
@@ -150,7 +151,7 @@ const Add = () => {
 
               <button
                 onClick={() => router.push(`/w/${website.trim()}`)}
-                className="py-2 px-4 flex items-center bg-gray-600 text-white rounded-md"
+                className="py-2 px-4 flex items-center bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-md"
               >
                 Continue <ArrowRight className="w-4 h-4 ml-2" />
               </button>

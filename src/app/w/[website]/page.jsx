@@ -7,8 +7,16 @@ import useUser from "@/hooks/useUser";
 import { redirect, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, LoaderPinwheel, RotateCw } from "lucide-react";
+import {
+  ArrowLeft,
+  Loader2,
+  LoaderPinwheel,
+  RotateCw,
+  Sparkles,
+} from "lucide-react";
 import Link from "next/link";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import { CustomTooltip } from "@/components/CustomTooltip";
 
 const Page = () => {
   const { currentUser } = useUser();
@@ -63,6 +71,7 @@ const Page = () => {
       setPageViews(views);
       setGroupedPageViews(groupPageViews(views));
       setTotalVisits(visits);
+      setGroupedPageSources(groupPageSources(visits));
       setCustomEvents(customEventsData);
       // grouping the customEvent by name
       setGroupedCustomEvents(
@@ -105,25 +114,41 @@ const Page = () => {
     }));
   };
 
-  const formatTimeStampz = (date) => {
-    const timestamp = new Date(date);
+  function groupPageSources(visits) {
+    const groupedPageSources = {};
 
-    // Step 2: Format the Date object into a human-readable format
-    const formattedTimestamp = timestamp.toLocaleString();
-    return formattedTimestamp;
+    visits.forEach(({ source }) => {
+      groupedPageSources[source] = (groupedPageSources[source] || 0) + 1;
+    });
+
+    return Object.keys(groupedPageSources).map((source) => ({
+      source: source,
+      visits: groupedPageSources[source],
+    }));
+  }
+
+  const formatTimeStampz = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString("en-US", {
+      year: "numeric",
+      month: "short", // "December"
+      day: "numeric", // "6"
+    });
   };
 
   if (loading) {
     return (
       <div className="text-gray-600 min-h-screen w-full items-start flex flex-col">
         <Navbar />
-        <h1>Loading...</h1>
+        <div className="w-full min-h-screen flex justify-center items-center bg-gray-950">
+          <Loader2 className="w-6 h-6 animate-spin text-blue-500" />
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="text-gray-300 bg-gray-950 min-h-screen w-full items-start flex flex-col">
+    <div className="text-gray-300 bg-gray-950 min-h-screen w-full">
       <Navbar />
 
       {pageViews?.length == 0 && !loading ? (
@@ -145,127 +170,136 @@ const Page = () => {
           </div>
         </div>
       ) : (
-        <div className="flex items-center justify-center w-full">
-          <Tabs
-            defaultValue="general"
-            className="flex flex-col items-center justify-center"
-          >
-            <TabsList className="w-full bg-transparent mb-4 items-center justify-center flex">
-              <TabsTrigger value="general">General</TabsTrigger>
-              <TabsTrigger value="custom_event">Custom Events</TabsTrigger>
-            </TabsList>
-            <TabsContent value="general" className="w-full">
-              <div className="w-full grid-cols-1 md:grid-cols-2 px-4 gap-6">
-                <div className="border-gray-500 text-gray-600 text-center shadow-md">
-                  <p className="text-gray-500 font-medium py-8 w-full text-center border-gray-400">
-                    Total Visits
-                  </p>
-                  <p className="py-12 text-3xl lg:text-4xl font-bold">
-                    {abbreviateNumber(totalVisits.length)}
-                  </p>
-                </div>
-                <div className="border-gray-500 text-gray-600 text-center shadow-md">
-                  <p className="text-gray-500 font-medium py-8 w-full text-center border-gray-400">
-                    Page View
-                  </p>
-                  <p className="py-12 text-3xl lg:text-4xl font-bold">
-                    {abbreviateNumber(pageViews.length)}
-                  </p>
-                </div>
-              </div>
-
-              <div className="items-center justify-center grid grid-cols-1 md:grid-cols-2 w-full mt-6">
-                <div className="flex flex-col z-40 w-full h-full">
-                  <h1 className="py-6 w-full text-center text-gray-600">
-                    Top Pages
-                  </h1>
-                  {groupedPageViews.map((view, ind) => (
-                    <div
-                      key={ind}
-                      className="w-full justify-between items-center px-6 py-4 border-b border-gray-400 flex"
-                    >
-                      <p>/{view.page}</p>
-                      <p>/{abbreviateNumber(view.visits)}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* top sources */}
-                <div
-                  className="flex flex-col bg-black z-40 h-full w-full
-             lg:border-l border-t lg:border-t-0 border-white/5"
+        <MaxWidthWrapper>
+          <div className="pt-12">
+            <div className="py-4">
+              <h2 className="text-xl font-semibold">Overview</h2>
+            </div>
+            <Tabs defaultValue="general" className="pb-12">
+              <TabsList className="w-full flex justify-start gap-1 items-center bg-gray-700 py-2 px-3 rounded-md mb-4">
+                <TabsTrigger
+                  value="general"
+                  className="bg-gray-800 text-gray-200"
                 >
-                  <h1 className="label relative">
-                    Top Visit Sources
-                    <p className="absolute bottom-2 right-2 text-[10px] italic font-light">
-                      add ?utm={"{source}"} to track
+                  Performance
+                </TabsTrigger>
+                <TabsTrigger
+                  value="custom_event"
+                  className="bg-gray-800 text-gray-200"
+                >
+                  Custom Events
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="general" className="w-full">
+                <div className="w-full flex justify-start items-start gap-2 mt-6 px-4">
+                  <div className="p-3 relative border-gray-500 bg-gray-800 rounded-md pr-10 text-gray-300 shadow-md">
+                    <p className="text-blue-400 flex items-center gap-1 mb-4 text-xs font-medium w-full border-gray-400">
+                      <Sparkles className="w-4 h-4" /> Total Visits
                     </p>
-                  </h1>
-                  {groupedPageSources.map((pageSource) => (
-                    <div
-                      key={pageSource}
-                      className="text-white w-full items-center justify-between 
-                  px-6 py-4 border-b border-white/5 flex"
-                    >
-                      <p className="text-white/70 font-light">
-                        /{pageSource.source}
-                      </p>
-                      <p className="text-white/70 font-light">
-                        <p className="">
-                          {abbreviateNumber(pageSource.visits)}
-                        </p>
-                      </p>
-                    </div>
-                  ))}
+                    <p className="text-2xl lg:text-4xl font-bold mb-2">
+                      {abbreviateNumber(totalVisits.length)}
+                    </p>
+                    <CustomTooltip message="This shows only website views. It only counts the visits of a single visitor or user" />
+                  </div>
+
+                  <div className="p-3 relative border-gray-500 bg-gray-800 rounded-md pr-10 text-gray-300 shadow-md">
+                    <p className="text-blue-400 flex items-center gap-1 mb-4 text-xs font-medium w-full border-gray-400">
+                      <Sparkles className="w-4 h-4" /> Page View
+                    </p>
+                    <p className="text-2xl lg:text-4xl font-bold mb-2">
+                      {abbreviateNumber(pageViews.length)}
+                    </p>
+                    <CustomTooltip message="This shows both website and pages views at a time. It also counts page views of single page website" />
+                  </div>
                 </div>
-              </div>
-            </TabsContent>
-            <TabsContent value="custom_event" className="w-full">
-              {groupedCustomEvents && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {Object.entries(groupedCustomEvents).map(
-                    ([eventName, count]) => (
-                      <div key={`${eventName}-${count}`} className="basis-1/2">
+
+                <h2 className="mt-6 py-4">Resources</h2>
+
+                <div className="items-start px-4 justify-center gap-4 grid grid-cols-1 md:grid-cols-2 w-full mt-3">
+                  <div className="">
+                    <h1 className="w-full mb-3 text-blue-400 border-b border-gray-600 pb-3">
+                      Top Pages
+                    </h1>
+                    {groupedPageViews.map((view, ind) => (
+                      <div
+                        key={ind}
+                        className="w-full justify-between items-center px-4 py-2 bg-gray-800 rounded-md mb-2 flex"
+                      >
+                        <p>/{view.page}</p>
+                        <p>{abbreviateNumber(view.visits)}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* top sources */}
+                  <div className="">
+                    <h1 className="w-full mb-3 text-blue-400 border-b border-gray-600 pb-3">
+                      Top Visit Sources
+                    </h1>
+                    {groupedPageSources.map((pageSource) => (
+                      <div
+                        key={pageSource}
+                        className="w-full justify-between items-center px-4 py-2 bg-gray-800 rounded-md mb-2 flex"
+                      >
+                        <p>/{pageSource.source}</p>
+                        <p>{abbreviateNumber(pageSource.visits)}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="custom_event" className="w-full">
+                {groupedCustomEvents && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {Object.entries(groupedCustomEvents).map(
+                      ([eventName, count]) => (
                         <div
-                          className={`bg-black smooth group hover:border-white/10
-                             text-white text-center border`}
+                          key={`${eventName}-${count}`}
+                          className="basis-1/2"
                         >
-                          <p
-                            className={`text-white/70 font-medium py-8 w-full
+                          <div
+                            className={`bg-black smooth group hover:border-white/10
+                             text-white text-center border`}
+                          >
+                            <p
+                              className={`text-white/70 font-medium py-8 w-full
                                  group-hover:border-white/10
                                 smooth text-center border-b`}
-                          >
-                            {eventName}
-                          </p>
-                          <p className="py-12 text-3xl lg:text-4xl font-bold bg-[#050505]">
-                            {count}
-                          </p>
+                            >
+                              {eventName}
+                            </p>
+                            <p className="py-12 text-3xl lg:text-4xl font-bold bg-[#050505]">
+                              {count}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    )
-                  )}
-                </div>
-              )}
-
-              <div className="items-center justify-center mt-12 w-full relative">
-                {customEvents.map((event, ind) => (
-                  <div
-                    className="w-full items-start justify-start px-6 py-12 flex flex-col relative"
-                    key={ind}
-                  >
-                    <p className="text-gray-500 font-light pb-3">
-                      {event.event_name}
-                    </p>
-                    <p>{event.message}</p>
-                    <p className="italic absolute right-2 bottom-2 text-xs text-gray-500">
-                      {formatTimeStampz(event.timestamp)}
-                    </p>
+                      )
+                    )}
                   </div>
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
+                )}
+
+                <div className="items-center justify-center mt-12 w-full relative">
+                  {customEvents.map((event, ind) => (
+                    <div
+                      className="w-full items-start justify-start px-6 py-12 flex flex-col relative"
+                      key={ind}
+                    >
+                      <p className="text-gray-500 font-light pb-3">
+                        {event.event_name}
+                      </p>
+                      <p>{event.message}</p>
+                      <p className="italic absolute right-2 bottom-2 text-xs text-gray-500">
+                        {formatTimeStampz(event.timestamp)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </MaxWidthWrapper>
       )}
     </div>
   );

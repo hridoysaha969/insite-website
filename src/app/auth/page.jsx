@@ -62,7 +62,7 @@ const Auth = () => {
             <div>
               <p className="inline-flex cursor-pointer items-center gap-2 text-xs font-normal hover:underline text-gray-300">
                 <CircleHelp className="w-4 h-4" />
-                Why do I need to connect with my wallet?
+                Why do I need to register to continue?
               </p>
             </div>
           </div>
