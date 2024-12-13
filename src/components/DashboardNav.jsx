@@ -41,11 +41,14 @@ const DashboardNav = () => {
             {currentUser && (
               <div className="flex space-x-6">
                 {pathName !== "/dashboard" && (
-                  <div className="items-center space-x-4 hidden md:flex">
+                  <div className="items-center space-x-4 flex">
                     {/* <p className="text-sm text-gray-600 hover:text-gray-900 cursor-pointer">
                       Snippet
                     </p> */}
-                    <Button asChild className="gradient-btn rounded-full">
+                    <Button
+                      asChild
+                      className="gradient-btn hidden md:flex rounded-full"
+                    >
                       <Link
                         href="/dashboard"
                         prefetch

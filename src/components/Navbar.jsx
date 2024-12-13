@@ -37,12 +37,12 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <div className="items-center gap-4 hidden sm:flex">
+          <div className="items-center gap-4 flex">
             {user ? (
               <Button asChild className="rounded-full gradient-btn">
                 <Link
                   href="/dashboard"
-                  className="text-gray-900 font-normal capitalize"
+                  className="text-gray-900 text-[12px] sm:text-xs font-normal capitalize"
                 >
                   Dashboard
                 </Link>
