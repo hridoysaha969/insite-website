@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/config/Supabase_Client";
 import useUser from "@/hooks/useUser";
 import { CheckCheck, Copy, Eye, EyeOff } from "lucide-react";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const Page = () => {
@@ -18,7 +19,7 @@ const Page = () => {
 
   const { currentUser } = useUser();
   useEffect(() => {
-    if (!currentUser) return;
+    if (!currentUser) redirect("/");
   }, [currentUser]);
 
   const getUserAPIs = async () => {

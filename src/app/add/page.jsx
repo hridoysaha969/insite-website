@@ -3,7 +3,7 @@ import { supabase } from "@/config/Supabase_Client";
 import useUser from "@/hooks/useUser";
 import { ArrowLeft, ArrowRight, CheckCheck, ClipboardList } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coldarkDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -19,6 +19,10 @@ const Add = () => {
 
   const scriptText = `<script defer data-domain="${website}"
                 src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>`;
+
+  useEffect(() => {
+    if (!currentUser) redirect("/");
+  }, [currentUser]);
 
   const addWebsite = async () => {
     if (website.trim() == "" || loading) return;
