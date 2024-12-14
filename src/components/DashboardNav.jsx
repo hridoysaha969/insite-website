@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { ArrowRightIcon, FileCode, LogOut, Settings2 } from "lucide-react";
+import {
+  ArrowRightIcon,
+  CodeXml,
+  FileCode,
+  LogOut,
+  Settings2,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -63,18 +69,6 @@ const DashboardNav = () => {
 
                 <DropdownMenu>
                   <DropdownMenuTrigger className="text-gray-600 outline-none p-0 m-0 border-none">
-                    {/* <div className="flex space-x-2 items-center justify-center border border-gray-500 rounded-full py-1 md:py-2 px-3 md:px-4">
-                      <p className="text-sm text-gray-600 font-semibold">
-                        {currentUser?.user_metadata.full_name.split(" ")[0]}
-                      </p>
-                      <Image
-                        src={currentUser?.user_metadata.avatar_url}
-                        alt="User Image"
-                        width={30}
-                        height={30}
-                        className="rounded-full w-[25px] h-[25px] md:h-[30px] md:w-[30px]"
-                      />
-                    </div> */}
                     <div className="relative">
                       <Image
                         src={currentUser?.user_metadata.avatar_url}
@@ -88,7 +82,7 @@ const DashboardNav = () => {
                   </DropdownMenuTrigger>
 
                   <DropdownMenuContent className="bg-gray-700 border-none outline-none text-gray-600 p-3 w-[250px] rounded-md mr-3 md:mr-0 shadow-md">
-                    <DropdownMenuLabel className="text-sm text-blue-500 tracking-tight font-normal">
+                    <DropdownMenuLabel className="text-sm text-blue-400 tracking-tight font-normal">
                       Settings
                     </DropdownMenuLabel>
 
@@ -103,12 +97,22 @@ const DashboardNav = () => {
                     </Link>
 
                     <DropdownMenuSeparator className="bg-gray-700" />
-                    <Link href={"/settings"}>
+                    <Link href={"/docs"}>
                       <DropdownMenuLabel className="px-4 py-2 mb-2 bg-gray-800 hover:bg-blue-400 text-white rounded-md transition-all duration-300 cursor-pointer flex justify-start items-center">
                         <span>
                           <FileCode className="w-4 h-4 mr-2" />
                         </span>
-                        Guide
+                        Docs
+                      </DropdownMenuLabel>
+                    </Link>
+
+                    <DropdownMenuSeparator className="bg-gray-700" />
+                    <Link href={"/snippet"}>
+                      <DropdownMenuLabel className="px-4 py-2 mb-2 bg-gray-800 hover:bg-blue-400 text-white rounded-md transition-all duration-300 cursor-pointer flex justify-start items-center">
+                        <span>
+                          <CodeXml className="w-4 h-4 mr-2" />
+                        </span>
+                        Snippet
                       </DropdownMenuLabel>
                     </Link>
 

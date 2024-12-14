@@ -60,7 +60,7 @@ const Dashboard = () => {
                   </Link>
                 </Button>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-6 p-6 z-40">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-6 py-6 px-2 z-40">
                 {website.map((item, ind) => (
                   <Link href={`/w/${item.website_name}`} key={ind}>
                     <div className="bg-gray-800 rounded-md py-2 px-2 text-gray-300 hover:shadow-md">
@@ -76,6 +76,11 @@ const Dashboard = () => {
                     </div>
                   </Link>
                 ))}
+                {website.length < 1 && (
+                  <div className="text-gray-200 text-sm">
+                    No website added yet.
+                  </div>
+                )}
               </div>
             </div>
           </MaxWidthWrapper>

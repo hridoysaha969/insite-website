@@ -72,6 +72,13 @@ const Header = () => {
 
       <MaxWidthWrapper>
         <section className="text-center py-20 !pb-2">
+          <div className="bg-gray-600 mb-4 text-[10px] sm:text-xs rounded-full w-fit mx-auto pl-1 pr-3 py-2 text-white">
+            <span className="rounded-full py-1 px-2 bg-blue-500 mr-2">
+              ✨ New
+            </span>
+            We have added custom events feature!
+          </div>
+
           <h1 className="text-2xl md:text-4xl lg:text-6xl mb-4 md:mb-8 font-semibold bg-gradient-to-b from-white to-blue-400 bg-clip-text text-transparent">
             Empowering You with Visitor Insights{" "}
             <br className="hidden md:block" /> Uncover insights to grow your

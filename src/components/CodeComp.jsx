@@ -6,17 +6,16 @@ const CodeComp = () => {
  const url = "https://insite-metrics.vercel.app/api/events";
   const headers = {
     "Content-Type": "application/json",
-    Authorization: "Bearer {{apiKey}}",
+    Authorization: "Bearer [your-api-key]",
   };
   const eventData = {
-    name: "",//* required
-    domain: "", //* required
-    description: "",//optional
+    name: " ", //* required
+    domain: " ", //* required
+    description: " ", //optional
   };
 
   const sendRequest = async () => {
-    axios
-      .post(url, eventData, { headers })
+    axios.post(url, eventData, { headers })
       .then()
       .catch((error) => {
         console.error("Error:", error);

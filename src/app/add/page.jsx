@@ -1,7 +1,7 @@
 "use client";
 import { supabase } from "@/config/Supabase_Client";
 import useUser from "@/hooks/useUser";
-import { ArrowLeft, ArrowRight, ClipboardList } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCheck, ClipboardList } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,6 +13,7 @@ const Add = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [website, setWebsite] = useState("");
+  const [copied, setCopied] = useState(false);
   const { currentUser } = useUser();
   const router = useRouter();
 
@@ -65,8 +66,17 @@ const Add = () => {
     }
   }, [website]);
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(scriptText);
+  const copyCode = async () => {
+    try {
+      // Copy the text to the clipboard
+      await navigator.clipboard.writeText(scriptText);
+      setCopied(true);
+
+      // Reset the copied state after 3 seconds
+      setTimeout(() => setCopied(false), 3000);
+    } catch (error) {
+      console.error("Failed to copy text:", error);
+    }
   };
 
   return (
@@ -133,8 +143,14 @@ const Add = () => {
                 <div className="mt-4">
                   <div className="bg-gray-600 cursor-pointer -mb-1 py-1 flex justify-end items-center rounded-t-md px-2">
                     <p onClick={copyCode} className="flex items-center gap-1">
-                      <ClipboardList className="w-4 h-4 text-gray-200" />
-                      <span className="text-xs text-gray-200">Copy</span>
+                      {copied ? (
+                        <CheckCheck className="w-4 h-4 text-gray-200" />
+                      ) : (
+                        <ClipboardList className="w-4 h-4 text-gray-200" />
+                      )}
+                      <span className="text-xs text-gray-200">
+                        {copied ? "Copied" : "Copy"}
+                      </span>
                     </p>
                   </div>
 
