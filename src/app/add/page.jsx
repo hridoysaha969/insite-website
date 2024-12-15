@@ -146,7 +146,10 @@ const Add = () => {
 
                 <div className="mt-4">
                   <div className="bg-gray-600 cursor-pointer -mb-1 py-1 flex justify-end items-center rounded-t-md px-2">
-                    <p onClick={copyCode} className="flex items-center gap-1">
+                    <p
+                      onClick={copyCode}
+                      className="flex items-center select-none gap-1"
+                    >
                       {copied ? (
                         <CheckCheck className="w-4 h-4 text-gray-200" />
                       ) : (

@@ -195,7 +195,7 @@ const Page = () => {
                   </div>
                   <Button
                     onClick={copyApiKey}
-                    className="py-1 px-4 rounded-md bg-blue-500 hover:bg-blue-400"
+                    className="py-1 select-none px-4 rounded-md bg-blue-500 hover:bg-blue-400"
                   >
                     {copied ? (
                       <CheckCheck className="w-4 h-4" />

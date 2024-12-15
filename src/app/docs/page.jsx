@@ -1,6 +1,7 @@
 "use client";
 import Introduction from "@/components/Introduction";
 import Navbar from "@/components/Navbar";
+import Quickstart from "@/components/Quickstart";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -30,16 +31,28 @@ const Docs = () => {
             <ul className="mb-6">
               <li className="mb-2">
                 <button
-                  onClick={() => setActiveMenu("")}
-                  className="text-gray-400 capitalize text-xs hover:text-blue-400"
+                  onClick={() => setActiveMenu("introduction")}
+                  className={cn(
+                    "text-gray-400 capitalize text-xs hover:text-gray-100",
+                    {
+                      "text-blue-400": activeMenu === "introduction",
+                      "hover:text-blue-400": activeMenu === "introduction",
+                    }
+                  )}
                 >
                   introduction
                 </button>
               </li>
               <li className="mb-2">
                 <button
-                  onClick={() => setActiveMenu("")}
-                  className="text-gray-400 capitalize text-xs hover:text-blue-400"
+                  onClick={() => setActiveMenu("quickstart")}
+                  className={cn(
+                    "text-gray-400 capitalize text-xs hover:text-gray-100",
+                    {
+                      "text-blue-400": activeMenu === "quickstart",
+                      "hover:text-blue-400": activeMenu === "quickstart",
+                    }
+                  )}
                 >
                   quickstart
                 </button>
@@ -47,7 +60,7 @@ const Docs = () => {
               <li className="mb-2">
                 <button
                   onClick={() => setActiveMenu("")}
-                  className="text-gray-400 capitalize text-xs hover:text-blue-400"
+                  className="text-gray-400 capitalize text-xs hover:text-gray-100"
                 >
                   License
                 </button>
@@ -55,7 +68,7 @@ const Docs = () => {
               <li className="mb-2">
                 <button
                   onClick={() => setActiveMenu("")}
-                  className="text-gray-400 capitalize text-xs hover:text-blue-400"
+                  className="text-gray-400 capitalize text-xs hover:text-gray-100"
                 >
                   changelog
                 </button>
@@ -70,7 +83,7 @@ const Docs = () => {
               <li className="mb-2">
                 <Link
                   href="http://"
-                  className="text-gray-400 capitalize text-xs hover:text-blue-400"
+                  className="text-gray-400 capitalize text-xs hover:text-gray-100"
                 >
                   introduction
                 </Link>
@@ -78,7 +91,7 @@ const Docs = () => {
               <li className="mb-2">
                 <Link
                   href="http://"
-                  className="text-gray-400 capitalize text-xs hover:text-blue-400"
+                  className="text-gray-400 capitalize text-xs hover:text-gray-100"
                 >
                   quickstart
                 </Link>
@@ -86,8 +99,9 @@ const Docs = () => {
             </ul>
           </div>
         </aside>
-        <article className="md:w-[80%] w-full">
+        <article className="md:w-[80%] w-full min-h-screen overflow-y-auto">
           {activeMenu === "introduction" && <Introduction />}
+          {activeMenu === "quickstart" && <Quickstart />}
         </article>
       </section>
     </main>
