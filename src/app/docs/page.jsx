@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/Footer";
 import Introduction from "@/components/Introduction";
 import Navbar from "@/components/Navbar";
 import Quickstart from "@/components/Quickstart";
@@ -100,10 +101,13 @@ const Docs = () => {
           </div>
         </aside>
         <article className="md:w-[80%] w-full min-h-screen overflow-y-auto">
-          {activeMenu === "introduction" && <Introduction />}
+          {activeMenu === "introduction" && (
+            <Introduction setActiveMenu={setActiveMenu} />
+          )}
           {activeMenu === "quickstart" && <Quickstart />}
         </article>
       </section>
+      <Footer />
     </main>
   );
 };

@@ -16,7 +16,7 @@ const Quickstart = () => {
         your any type of project.
       </p>
 
-      <div className="mt-12 pr-0 sm:pr-12">
+      <div className="mt-12 pr-0 sm:pr-12 pb-6">
         <div className="mb-6">
           <h2 className="text-xl text-gray-200 mb-3">
             Step 1: Sign Up and Log In
@@ -64,7 +64,7 @@ const Quickstart = () => {
             <li className="mb-1">
               Paste the script tag just before the closing{" "}
               <span className="text-red-400">{"<head>"}</span> tag, like so:
-              <div className="rounded-md mt-2 w-fit">
+              <div className="rounded-md mt-2 w-full">
                 <SyntaxHighlighter language="javascript" style={dracula}>
                   {scriptText}
                 </SyntaxHighlighter>
