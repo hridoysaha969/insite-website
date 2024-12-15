@@ -1,5 +1,6 @@
 "use client";
 import DashboardNav from "@/components/DashboardNav";
+import Footer from "@/components/Footer";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/config/Supabase_Client";
@@ -84,6 +85,7 @@ const Dashboard = () => {
               </div>
             </div>
           </MaxWidthWrapper>
+          <Footer />
         </div>
       ) : null}
     </>
