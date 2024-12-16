@@ -1,17 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
+First, create an account on our platform:
+ 1. Navigate to Signup page.
+ 2. Click on Sign Up with google.
+ 3. Once registered, navigate to dashboard.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+After navigating to dashboard:
+ 1. Click on Add Website.
+ 2. Enter your website's domain (e.g., https://yourdomain.com).
+ 3. Copy the generated script tag.
+
+To enable tracking, integrate the script tag into your website:
+ 1. Open your website's HTML file or template.
+ 2. Paste the script tag in the <head> tag, like so:
+<script defer data-domain="[your-website-id]" src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>
+ 3. Save your changes and deploy your website 
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
