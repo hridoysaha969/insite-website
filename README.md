@@ -15,7 +15,7 @@ To enable tracking, integrate the script tag into your website:
  2. Paste the script tag in the <head> tag, like so:
 ```
 <script defer data-domain="[your-website-id]" src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>
-'''
+```
 3. Save your changes and deploy your website 
 
 ```
