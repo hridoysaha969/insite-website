@@ -31,7 +31,7 @@ You agree not to:
 
  1. Reverse engineer, decompile, or disassemble the Services.
  2. Use the Services for any unlawful or unauthorized purpose.
- 3. Share, resell, or redistribute the script tag or any other proprietary code provided by [Your Website Name] without explicit permission.
+ 3. Share, resell, or redistribute the script tag or any other proprietary code provided by [Insight Metrics](https://insite-metrics.vercel.app) without explicit permission.
 
 3. Ownership
 All rights, title, and interest in the Services, including any intellectual property, remain the exclusive property of [Hridoy Saha](https://hridoysaha.vercel.app). This Agreement does not transfer ownership of any software, design, or content provided by the Services.
