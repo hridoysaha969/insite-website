@@ -1,6 +1,7 @@
 "use client";
 import Footer from "@/components/Footer";
 import Introduction from "@/components/Introduction";
+import License from "@/components/License";
 import Navbar from "@/components/Navbar";
 import Quickstart from "@/components/Quickstart";
 import { cn } from "@/lib/utils";
@@ -60,8 +61,14 @@ const Docs = () => {
               </li>
               <li className="mb-2">
                 <button
-                  onClick={() => setActiveMenu("")}
-                  className="text-gray-400 capitalize text-xs hover:text-gray-100"
+                  onClick={() => setActiveMenu("license")}
+                  className={cn(
+                    "text-gray-400 capitalize text-xs hover:text-gray-100",
+                    {
+                      "text-blue-400": activeMenu === "license",
+                      "hover:text-blue-400": activeMenu === "license",
+                    }
+                  )}
                 >
                   License
                 </button>
@@ -105,6 +112,7 @@ const Docs = () => {
             <Introduction setActiveMenu={setActiveMenu} />
           )}
           {activeMenu === "quickstart" && <Quickstart />}
+          {activeMenu === "license" && <License />}
         </article>
       </section>
       <Footer />

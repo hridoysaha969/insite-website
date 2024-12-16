@@ -62,7 +62,7 @@ const Quickstart = () => {
           <ol className="pl-6 mt-4 text-gray-300 text-sm list-decimal">
             <li className="mb-1">Open your website's HTML file or template.</li>
             <li className="mb-1">
-              Paste the script tag just before the closing{" "}
+              Paste the script tag in the{" "}
               <span className="text-red-400">{"<head>"}</span> tag, like so:
               <div className="rounded-md mt-2 w-full">
                 <SyntaxHighlighter language="javascript" style={dracula}>

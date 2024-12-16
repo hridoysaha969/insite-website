@@ -10,7 +10,7 @@ const Introduction = ({ setActiveMenu }) => {
       </p>
 
       <div className="mt-8">
-        <h2 className="mb-3 text-gray-200 md:text-xl font-semibold text-sm">
+        <h2 className="mb-3 text-gray-200 text-xl font-semibold">
           Introduction <span className="text-blue-500">#</span>
         </h2>
         <p className="text-gray-400 text-sm pr-0 sm:pr-12">
