@@ -18,7 +18,6 @@ To enable tracking, integrate the script tag into your website:
 ```
 3. Save your changes and deploy your website 
 
-```
 
 # Insight Metrics - License
 ## License Agreement
