@@ -2,8 +2,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const JavaScript = () => {
-  const scriptText = `< defer data-domain="[your-website-id]"
-  src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></`;
+  const scriptText = `<script defer data-domain="[your-website-id]" src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>`;
 
   const htmlCode = `<!DOCTYPE html>  
 <html lang="en">  
