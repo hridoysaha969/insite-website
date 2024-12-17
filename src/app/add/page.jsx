@@ -21,7 +21,7 @@ const Add = () => {
                 src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>`;
 
   useEffect(() => {
-    if (!currentUser) redirect("/");
+    if (!currentUser) return;
   }, [currentUser]);
 
   const addWebsite = async () => {

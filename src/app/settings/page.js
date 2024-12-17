@@ -19,7 +19,7 @@ const Page = () => {
 
   const { currentUser } = useUser();
   useEffect(() => {
-    if (!currentUser) redirect("/");
+    if (!currentUser) return;
   }, [currentUser]);
 
   const getUserAPIs = async () => {

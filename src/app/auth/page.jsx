@@ -30,7 +30,7 @@ const Auth = () => {
     if (!supabase) return;
 
     catchUser();
-  }, []);
+  }, [supabase]);
 
   return (
     <>
