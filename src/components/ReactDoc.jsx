@@ -13,7 +13,7 @@ const ReactDoc = () => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
     <title>Vite + React</title>  
     <!-- Analytics Script -->  
-    <script src="https://yourwebsite.com/tracking.js" data-website-id="your-unique-id"></script>  
+    <script defer data-domain="[your-website-id]" src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>
   </head>  
   <body>  
     <div id="root"></div>  

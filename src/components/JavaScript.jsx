@@ -2,8 +2,8 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const JavaScript = () => {
-  const scriptText = `<script defer data-domain="[your-website-id]"
-  src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>`;
+  const scriptText = `< defer data-domain="[your-website-id]"
+  src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></`;
 
   const htmlCode = `<!DOCTYPE html>  
 <html lang="en">  
@@ -12,7 +12,7 @@ const JavaScript = () => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <title>My Website</title>  
     <!-- Analytics Script -->  
-    <script src="https://yourwebsite.com/tracking.js" data-website-id="your-unique-id"></script>  
+    <script defer data-domain="[your-website-id]" src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>  
 </head>  
 <body>  
     <h1>Welcome to My Website</h1>  
@@ -89,7 +89,7 @@ const JavaScript = () => {
           </h2>
           <p className="text-sm text-gray-400 mb-2 pr-0 sm:pr-12">
             To enable analytics tracking, paste the copied script tag inside the{" "}
-            <span className="text-red-500">{"<head>"}</span> section of your
+            <span className="text-red-400">{"<head>"}</span> section of your
             HTML file, like this:
           </p>
           <div className="rounded-md mt-2 w-full">
