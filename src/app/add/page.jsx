@@ -162,10 +162,7 @@ const Add = () => {
                   </div>
 
                   <div className="rounded-md pb-4">
-                    <SyntaxHighlighter
-                      language="javascript"
-                      style={coldarkDark}
-                    >
+                    <SyntaxHighlighter language="html" style={coldarkDark}>
                       {scriptText}
                     </SyntaxHighlighter>
                   </div>

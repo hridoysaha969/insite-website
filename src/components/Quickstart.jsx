@@ -65,7 +65,7 @@ const Quickstart = () => {
               Paste the script tag in the{" "}
               <span className="text-red-400">{"<head>"}</span> tag, like so:
               <div className="rounded-md mt-2 w-full">
-                <SyntaxHighlighter language="javascript" style={dracula}>
+                <SyntaxHighlighter language="html" style={dracula}>
                   {scriptText}
                 </SyntaxHighlighter>
               </div>

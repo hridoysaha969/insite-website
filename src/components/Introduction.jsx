@@ -42,16 +42,35 @@ const Introduction = ({ setActiveMenu }) => {
               configuring some easy steps to monitor your website.
             </p>
           </button>
-          <button className="bg-gray-700 rounded-md px-5 py-4 shadow-md text-start">
+          <button
+            className="bg-gray-700 rounded-md px-5 py-4 shadow-md text-start"
+            onClick={() => setActiveMenu("javascript")}
+          >
             <h3 className="text-xl font-semibold mb-2 text-white capitalize">
-              JS/React.js
+              Javascript
+            </h3>
+            <p className="text-gray-300 text-sm">
+              Learn how to integrate the analytics method with Insight Metrics
+              using Vanila JavaScript. You can implement the analytics
+              functionality in any HTML, JS project.
+            </p>
+          </button>
+          <button
+            className="bg-gray-700 rounded-md px-5 py-4 shadow-md text-start"
+            onClick={() => setActiveMenu("react")}
+          >
+            <h3 className="text-xl font-semibold mb-2 text-white capitalize">
+              React.js
             </h3>
             <p className="text-gray-300 text-sm">
               Learn how to integrate the analytics method with Insight Metrics
               using Vanila JavaScript or React.js. It's easy and scalable.
             </p>
           </button>
-          <button className="bg-gray-700 rounded-md px-5 py-4 shadow-md text-start">
+          <button
+            className="bg-gray-700 rounded-md px-5 py-4 shadow-md text-start"
+            onClick={() => setActiveMenu("next")}
+          >
             <h3 className="text-xl font-semibold mb-2 text-white capitalize">
               Next.js
             </h3>

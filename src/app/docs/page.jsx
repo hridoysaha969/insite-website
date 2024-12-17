@@ -2,11 +2,12 @@
 import Changelog from "@/components/Changelog";
 import Footer from "@/components/Footer";
 import Introduction from "@/components/Introduction";
+import JavaScript from "@/components/JavaScript";
 import License from "@/components/License";
 import Navbar from "@/components/Navbar";
 import Quickstart from "@/components/Quickstart";
+import ReactDoc from "@/components/ReactDoc";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import React, { useState } from "react";
 
 const Docs = () => {
@@ -17,7 +18,7 @@ const Docs = () => {
     <main>
       <Navbar docs={true} setShowMenu={setShowMenu} />
 
-      <section className="w-full min-h-screen bg-gray-950 flex justify-start items-start">
+      <section className="w-full min-h-screen overflow-y-auto bg-gray-950 flex justify-start items-start">
         <aside
           className={cn(
             "md:w-[20%] w-[60%] min-h-screen overflow-y-auto border-r border-gray-600 absolute md:relative -left-full md:left-0 z-30 bg-gray-950 transition-all ease-in-out delay-200",
@@ -108,20 +109,55 @@ const Docs = () => {
 
             <ul className="mb-6">
               <li className="mb-2">
-                <Link
-                  href="http://"
-                  className="text-gray-400 capitalize text-xs hover:text-gray-100"
+                <button
+                  onClick={() => {
+                    setActiveMenu("javascript");
+                    setShowMenu(false);
+                  }}
+                  className={cn(
+                    "text-gray-400 capitalize text-xs hover:text-gray-100",
+                    {
+                      "text-blue-400": activeMenu === "javascript",
+                      "hover:text-blue-400": activeMenu === "javascript",
+                    }
+                  )}
                 >
-                  introduction
-                </Link>
+                  JavaScript
+                </button>
               </li>
               <li className="mb-2">
-                <Link
-                  href="http://"
-                  className="text-gray-400 capitalize text-xs hover:text-gray-100"
+                <button
+                  onClick={() => {
+                    setActiveMenu("react");
+                    setShowMenu(false);
+                  }}
+                  className={cn(
+                    "text-gray-400 capitalize text-xs hover:text-gray-100",
+                    {
+                      "text-blue-400": activeMenu === "react",
+                      "hover:text-blue-400": activeMenu === "react",
+                    }
+                  )}
                 >
-                  quickstart
-                </Link>
+                  React.js
+                </button>
+              </li>
+              <li className="mb-2">
+                <button
+                  onClick={() => {
+                    setActiveMenu("next");
+                    setShowMenu(false);
+                  }}
+                  className={cn(
+                    "text-gray-400 capitalize text-xs hover:text-gray-100",
+                    {
+                      "text-blue-400": activeMenu === "next",
+                      "hover:text-blue-400": activeMenu === "next",
+                    }
+                  )}
+                >
+                  Next.js
+                </button>
               </li>
             </ul>
           </div>
@@ -133,6 +169,8 @@ const Docs = () => {
           {activeMenu === "quickstart" && <Quickstart />}
           {activeMenu === "license" && <License />}
           {activeMenu === "changelog" && <Changelog />}
+          {activeMenu === "javascript" && <JavaScript />}
+          {activeMenu === "react" && <ReactDoc />}
         </article>
       </section>
       <Footer />
