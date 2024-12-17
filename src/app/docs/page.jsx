@@ -1,4 +1,5 @@
 "use client";
+import Changelog from "@/components/Changelog";
 import Footer from "@/components/Footer";
 import Introduction from "@/components/Introduction";
 import License from "@/components/License";
@@ -33,7 +34,10 @@ const Docs = () => {
             <ul className="mb-6">
               <li className="mb-2">
                 <button
-                  onClick={() => setActiveMenu("introduction")}
+                  onClick={() => {
+                    setActiveMenu("introduction");
+                    setShowMenu(false);
+                  }}
                   className={cn(
                     "text-gray-400 capitalize text-xs hover:text-gray-100",
                     {
@@ -47,7 +51,10 @@ const Docs = () => {
               </li>
               <li className="mb-2">
                 <button
-                  onClick={() => setActiveMenu("quickstart")}
+                  onClick={() => {
+                    setActiveMenu("quickstart");
+                    setShowMenu(false);
+                  }}
                   className={cn(
                     "text-gray-400 capitalize text-xs hover:text-gray-100",
                     {
@@ -61,7 +68,10 @@ const Docs = () => {
               </li>
               <li className="mb-2">
                 <button
-                  onClick={() => setActiveMenu("license")}
+                  onClick={() => {
+                    setActiveMenu("license");
+                    setShowMenu(false);
+                  }}
                   className={cn(
                     "text-gray-400 capitalize text-xs hover:text-gray-100",
                     {
@@ -75,8 +85,17 @@ const Docs = () => {
               </li>
               <li className="mb-2">
                 <button
-                  onClick={() => setActiveMenu("")}
-                  className="text-gray-400 capitalize text-xs hover:text-gray-100"
+                  onClick={() => {
+                    setActiveMenu("changelog");
+                    setShowMenu(false);
+                  }}
+                  className={cn(
+                    "text-gray-400 capitalize text-xs hover:text-gray-100",
+                    {
+                      "text-blue-400": activeMenu === "changelog",
+                      "hover:text-blue-400": activeMenu === "changelog",
+                    }
+                  )}
                 >
                   changelog
                 </button>
@@ -113,6 +132,7 @@ const Docs = () => {
           )}
           {activeMenu === "quickstart" && <Quickstart />}
           {activeMenu === "license" && <License />}
+          {activeMenu === "changelog" && <Changelog />}
         </article>
       </section>
       <Footer />

@@ -20,6 +20,7 @@ const License = () => {
           <Link
             href="https://github.com/hridoysaha969/insite-website/blob/main/README.md"
             className="text-blue-400"
+            target="_blank"
           >
             Insight Metrics Guideline
           </Link>
@@ -74,6 +75,7 @@ const License = () => {
             <Link
               href="https://hridoysaha.vercel.app/"
               className="text-blue-400"
+              target="_blank"
             >
               Hridoy Saha
             </Link>
