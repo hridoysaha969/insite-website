@@ -5,6 +5,7 @@ import Introduction from "@/components/Introduction";
 import JavaScript from "@/components/JavaScript";
 import License from "@/components/License";
 import Navbar from "@/components/Navbar";
+import NextDocs from "@/components/NextDocs";
 import Quickstart from "@/components/Quickstart";
 import ReactDoc from "@/components/ReactDoc";
 import { cn } from "@/lib/utils";
@@ -171,6 +172,7 @@ const Docs = () => {
           {activeMenu === "changelog" && <Changelog />}
           {activeMenu === "javascript" && <JavaScript />}
           {activeMenu === "react" && <ReactDoc />}
+          {activeMenu === "next" && <NextDocs />}
         </article>
       </section>
       <Footer />

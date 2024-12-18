@@ -74,7 +74,7 @@ const JavaScript = () => {
             will look something like this:
           </p>
           <div className="rounded-md mt-2 w-full">
-            <SyntaxHighlighter language="html" style={dracula}>
+            <SyntaxHighlighter language="html" wrapLines={true} style={dracula}>
               {scriptText}
             </SyntaxHighlighter>
           </div>
@@ -92,7 +92,7 @@ const JavaScript = () => {
             HTML file, like this:
           </p>
           <div className="rounded-md mt-2 w-full">
-            <SyntaxHighlighter language="html" style={dracula}>
+            <SyntaxHighlighter language="html" wrapLines={true} style={dracula}>
               {htmlCode}
             </SyntaxHighlighter>
           </div>

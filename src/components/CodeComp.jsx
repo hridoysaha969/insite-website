@@ -23,7 +23,7 @@ const CodeComp = () => {
   };`;
 
   return (
-    <SyntaxHighlighter language="javascript" style={dracula}>
+    <SyntaxHighlighter language="javascript" wrapLines={true} style={dracula}>
       {codeString}
     </SyntaxHighlighter>
   );

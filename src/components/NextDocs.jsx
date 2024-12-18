@@ -1,47 +1,60 @@
-import { FaReact } from "react-icons/fa6";
+import { SiNextdotjs } from "react-icons/si";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-const ReactDoc = () => {
-  const scriptText = `<script defer data-domain="[your-website-id]"
-  src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>`;
+const NextDocs = () => {
+  const scriptText = `<Script
+        defer
+        data-domain="[your-website-id]"
+        src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"    
+        strategy="afterInteractive"  
+    />`;
 
-  const reactHtml = `<!DOCTYPE html>  
-<html lang="en">  
-  <head>  
-    <meta charset="UTF-8" />  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-    <title>Vite + React</title>  
-    <!-- Analytics Script -->  
-    <script defer data-domain="[your-website-id]" src="https://insite-metrics.vercel.app/tracking-script.js?utm={source}"></script>
-  </head>  
-  <body>  
-    <div id="root"></div>  
-  </body>  
-</html>`;
+  const nextJsx = `
+import Head from 'next/head';  
+import Script from 'next/script';  
+import '../styles/globals.css';  
+
+function MyApp({ Component, pageProps }) {  
+  return (  
+    <>  
+      <Head>  
+        <title>My Website</title>  
+      </Head>  
+      <Script  
+        src="https://yourwebsite.com/tracking.js"  
+        data-website-id="your-unique-id"  
+        strategy="afterInteractive"  
+      />  
+      <Component {...pageProps} />  
+    </>  
+  );  
+}  
+
+export default MyApp;`;
 
   return (
     <div className="md:p-8 p-5">
       <div className="mb-6 p-1 rounded-full bg-gray-700 flex items-center text-white text-sm gap-2 w-fit pr-3">
         <span className="rounded-full bg-blue-500 text-white py-1 px-2">
-          <FaReact className="w-4 h-4" />
+          <SiNextdotjs className="w-4 h-4" />
         </span>
-        Requires React
+        Requires Next.js
       </div>
 
       <h1 className="text-gray-200 text-xl md:text-2xl mb-2 font-semibold">
-        React.js - Insight Metrics
+        Next.js - Insight Metrics
       </h1>
       <p className="text-gray-400 pr-1 sm:pr-12">
-        Learn how to integrate Web Analytics with Insight Metrics for your
-        Personal or Business website and start tracking website, webpage visits
-        and user actions using our free web analytics service.
+        Follow these simple steps to integrate our analytics script into your
+        Next.js project and start tracking visits and page views. It's easy and
+        quick to use.
       </p>
 
       <div className="mt-12 pb-4">
         <div className="md:mb-12 mb-8 pr-0 sm:pr-12">
           <h2 className="text-gray-200 text-xl font-semibold mb-3">
-            Step 1: Create a Vite + React Project{" "}
+            Step 1: Create a Next.js Project{" "}
             <span className="text-blue-500">#</span>
           </h2>
           <p className="text-sm text-gray-400 mb-2 pr-0 sm:pr-12">
@@ -57,7 +70,7 @@ const ReactDoc = () => {
                   wrapLines={true}
                   style={dracula}
                 >
-                  {`npm create vite@latest my-vite-app --template react `}
+                  {`npx create-next-app@latest my-next-app`}
                 </SyntaxHighlighter>
               </div>
             </li>
@@ -65,17 +78,22 @@ const ReactDoc = () => {
               Navigate into the project directory:
               <div className="rounded-md mt-2 w-full">
                 <SyntaxHighlighter language="bash" style={dracula}>
-                  {`cd my-vite-app`}
+                  {`cd my-next-app`}
                 </SyntaxHighlighter>
               </div>
             </li>
             <li className="mb-1">
-              Install dependencies:
+              Start the development server:
               <div className="rounded-md mt-2 w-full">
                 <SyntaxHighlighter language="bash" style={dracula}>
-                  {`npm install`}
+                  {`npm run dev`}
                 </SyntaxHighlighter>
               </div>
+              This will start your project on{" "}
+              <span className="p-[2px] mx-[2px] bg-gray-700 text-gray-200 text-xs">
+                {"http://localhost:3000"}
+              </span>
+              .
             </li>
           </ul>
         </div>
@@ -86,11 +104,11 @@ const ReactDoc = () => {
             <span className="text-blue-500">#</span>
           </h2>
           <p className="text-sm text-gray-400 mb-2 pr-0 sm:pr-12">
-            Once you've added your website to the Dashboard, copy the script tag
-            provided. The script tag will look like this:
+            After adding your website to the Dashboard, copy the script tag
+            provided. It will look like this:
           </p>
           <div className="rounded-md mt-2 w-full">
-            <SyntaxHighlighter language="html" wrapLines={true} style={dracula}>
+            <SyntaxHighlighter language="jsx" wrapLines={true} style={dracula}>
               {scriptText}
             </SyntaxHighlighter>
           </div>
@@ -98,40 +116,40 @@ const ReactDoc = () => {
 
         <div className="md:mb-12 mb-8 pr-0 sm:pr-12">
           <h2 className="text-gray-200 text-xl font-semibold mb-3">
-            Step 3: Add the Script Tag to the{" "}
-            <span className="p-[2px] bg-gray-700">{"<head>"}</span> Section{" "}
+            Step 3: Add the Script Using the{" "}
+            <span className="p-[2px] bg-gray-700">Script</span> Component{" "}
             <span className="text-blue-500">#</span>
           </h2>
-          <p className="text-sm text-gray-400 mb-2 pr-0 sm:pr-12">
-            To enable analytics tracking, add the script tag to the index.html
-            file in your Vite + React project.
-          </p>
           <ul className="list-disc text-gray-400 pl-4 text-sm">
             <li className="mb-2">
-              Open the{" "}
-              <span className="bg-gray-800 p-[2px] text-gray-200 text-xs">
-                index.html
+              Import the{" "}
+              <span className="bg-gray-800 p-[2px] mx-[2px] select-none text-gray-200 text-xs">
+                Script
               </span>{" "}
-              file located in the{" "}
-              <span className="bg-gray-800 p-[2px] text-gray-200 text-xs">
-                public
-              </span>{" "}
-              folder of your project.
+              component from{" "}
+              <span className="bg-gray-800 p-[2px] mx-[2px] select-none text-gray-200 text-xs">
+                next/script
+              </span>
+              .
             </li>
 
             <li className="mb-1">
-              Paste the copied script tag inside the{" "}
-              <span className="p-[2px] bg-gray-700 text-gray-200">
-                {"<head>"}
+              Add the Script component inside the{" "}
+              <span className="bg-gray-800 p-[2px] mx-[2px] select-none text-gray-200 text-xs">
+                page.js
               </span>{" "}
-              section, like this:
+              or
+              <span className="bg-gray-800 p-[2px] mx-[2px] select-none text-gray-200 text-xs">
+                page.tsx
+              </span>{" "}
+              file.
               <div className="rounded-md mt-2 w-full">
                 <SyntaxHighlighter
-                  language="html"
+                  language="jsx"
                   wrapLines={true}
                   style={dracula}
                 >
-                  {reactHtml}
+                  {nextJsx}
                 </SyntaxHighlighter>
               </div>
             </li>
@@ -145,18 +163,16 @@ const ReactDoc = () => {
           </h2>
           <ul className="list-disc text-gray-400 pl-4 text-sm">
             <li className="mb-2">
-              Start your development server to verify the integration:{" "}
+              Build your Next.js project for production:{" "}
               <div className="rounded-md mt-2 w-full">
                 <SyntaxHighlighter language="bash" style={dracula}>
-                  {`npm run dev`}
+                  {`npm run build`}
                 </SyntaxHighlighter>
               </div>
-              Open the provided local URL in your browser to see your app
-              running.
             </li>
 
             <li className="mb-1">
-              Deploy your Vite app to a hosting platform like Netlify, Vercel,
+              Deploy the project to a hosting platform such as Vercel or Netlify
               or another service.
             </li>
           </ul>
@@ -166,4 +182,4 @@ const ReactDoc = () => {
   );
 };
 
-export default ReactDoc;
+export default NextDocs;
