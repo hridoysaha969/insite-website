@@ -107,11 +107,22 @@ export default MyApp;`;
             After adding your website to the Dashboard, copy the script tag
             provided. It will look like this:
           </p>
-          <div className="rounded-md mt-2 w-full">
-            <SyntaxHighlighter language="jsx" wrapLines={true} style={dracula}>
-              {scriptText}
-            </SyntaxHighlighter>
-          </div>
+          <ul className="list-disc text-gray-400 pl-4 text-sm">
+            <li className="mb-2">
+              Copy the generated{" "}
+              <span className="p-[2px] bg-gray-700 text-gray-300">Script</span>{" "}
+              component
+              <div className="rounded-md mt-2 w-full">
+                <SyntaxHighlighter
+                  language="jsx"
+                  wrapLines={true}
+                  style={dracula}
+                >
+                  {scriptText}
+                </SyntaxHighlighter>
+              </div>
+            </li>
+          </ul>
         </div>
 
         <div className="md:mb-12 mb-8 pr-0 sm:pr-12">
