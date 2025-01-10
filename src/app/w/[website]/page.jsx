@@ -255,24 +255,12 @@ const Page = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {Object.entries(groupedCustomEvents).map(
                       ([eventName, count]) => (
-                        <div
-                          key={`${eventName}-${count}`}
-                          className="basis-1/2"
-                        >
+                        <div key={`${eventName}-${count}`} className="">
                           <div
-                            className={`bg-black smooth group hover:border-white/10
-                             text-white text-center border`}
+                            className={`bg-gray-800 py-1 px-2 flex items-center gap-2 justify-between rounded-md text-white text-center`}
                           >
-                            <p
-                              className={`text-white/70 font-medium py-8 w-full
-                                 group-hover:border-white/10
-                                smooth text-center border-b`}
-                            >
-                              {eventName}
-                            </p>
-                            <p className="py-12 text-3xl lg:text-4xl font-bold bg-[#050505]">
-                              {count}
-                            </p>
+                            <p className={`text-white/70 text-sm`}>eventName</p>
+                            <p className="text-lg">count</p>
                           </div>
                         </div>
                       )

@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
       </Head>  
       <Script  
         src="https://yourwebsite.com/tracking.js"  
-        data-website-id="your-unique-id"  
+        data-domain="[your-website-domain]  
         strategy="afterInteractive"  
       />  
       <Component {...pageProps} />  
